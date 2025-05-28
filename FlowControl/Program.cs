@@ -42,6 +42,7 @@ namespace FlowControl
                     break;
                 case "3":
                     Console.WriteLine("Upprepa tio gånger.");
+                    RepeatTenTimes();
                     break;
                 case "4":
                     Console.WriteLine("Det tredje ordet.");
@@ -52,46 +53,46 @@ namespace FlowControl
             }
                 
             }
-
         }
-            // Menyval 1: Ungdom eller pensionär
-            private static void ShowTicketPrice()
+
+        // Menyval 1: Ungdom eller pensionär
+        private static void ShowTicketPrice()
+        {
+            // För att exemplifiera if-satser skall ni implementera, på uppdrag av en teoretisk lokal bio, ett program som kollar om en person är pensionär eller ungdom vid angiven ålder. För attkomma till denna funktion skall ett case i huvudmenyn skapas för ”1”, detta skall även framgå i texten som förklarar menyn. För att göra detta skall ni använda er av en nästlad if-sats.Det skall ske enligt följande förlopp:
+            Console.WriteLine("Var vänlig och ange din ålder:");
+            // 1.Användaren anger en ålder i siffror 
+            string ageInput = Console.ReadLine()!;
+            int age;
+            // 2.Programmet konverterar detta från en sträng till en int
+            if (int.TryParse(ageInput, out age))
             {
-                // För att exemplifiera if-satser skall ni implementera, på uppdrag av en teoretisk lokal bio, ett program som kollar om en person är pensionär eller ungdom vid angiven ålder. För attkomma till denna funktion skall ett case i huvudmenyn skapas för ”1”, detta skall även framgå i texten som förklarar menyn. För att göra detta skall ni använda er av en nästlad if-sats.Det skall ske enligt följande förlopp:
-                Console.WriteLine("Var vänlig och ange din ålder:");
-                // 1.Användaren anger en ålder i siffror 
-                string ageInput = Console.ReadLine()!;
-                int age;
-                // 2.Programmet konverterar detta från en sträng till en int
-                if (int.TryParse(ageInput, out age))
+                // 3.Programmet ser om personen är ungdom(under 20 år)
+                if (age < 20)
                 {
-                    // 3.Programmet ser om personen är ungdom(under 20 år)
-                    if (age < 20)
-                    {
-                        // 4.Om det ovanstående är sant skall programmet skriva ut: Ungdomspris: 80kr
-                        Console.WriteLine("Ungdomspris: 80kr");
-                    }
-                    // 5.Annars kollar programmet om personen är en pensionär(över 64 år)
-                    else if (age > 64)
-                    {
-                        // 6.Om ovanstående är sant skall programmet skruva ut: Pensionärspris: 90kr
-                        Console.WriteLine("Pensionärspris: 90kr");
-                    }
-                    else
-                    {
-                        // 7.Annars skall programmet skriva ut: Standardpris: 120kr
-                        Console.WriteLine("Standardpris: 120kr");
-                    }
+                    // 4.Om det ovanstående är sant skall programmet skriva ut: Ungdomspris: 80kr
+                    Console.WriteLine("Ungdomspris: 80kr");
+                }
+                // 5.Annars kollar programmet om personen är en pensionär(över 64 år)
+                else if (age > 64)
+                {
+                    // 6.Om ovanstående är sant skall programmet skruva ut: Pensionärspris: 90kr
+                    Console.WriteLine("Pensionärspris: 90kr");
                 }
                 else
                 {
-                    Console.WriteLine("Felaktig ålder, var vänlig försök igen.");
+                    // 7.Annars skall programmet skriva ut: Standardpris: 120kr
+                    Console.WriteLine("Standardpris: 120kr");
                 }
             }
-
-            // Menyval 2: Räkna ut totalpris
-            private static void CountTotalPrice()
+            else
             {
+                Console.WriteLine("Felaktig ålder, var vänlig försök igen.");
+            }
+        }
+
+        // Menyval 2: Räkna ut totalpris
+        private static void CountTotalPrice()
+        {
             // Vi vill även få möjlighet att kunna räkna ut priset för ett helt sällskap.Lägg till det alternativet i huvudmenyn(ett case “2”). Det är även ok att ha alternativet i en undermeny. Vi anger då först hur många vi är som ska gå på bio.Frågar sedan efter ålder på var och en och skriver sedan ut en sammanfattning i konsolen som ska innehålla följande:
             // ● Antal personer
             Console.Write("Hur många är ni i sällskapet? ");
@@ -128,13 +129,28 @@ namespace FlowControl
                         totalPrice += 120;
                     }
                 }
-
                 Console.WriteLine($"\nAntal personer: {count}");
                 Console.WriteLine($"Totalkostnad: {totalPrice}kr");
             }
             else
             {
                 Console.WriteLine("Felaktigt antal, försök igen!");
+            }
+
+        }
+
+        // Menyval 3: Upprepa tio gånger
+        private static void RepeatTenTimes()
+        {
+            // För att använda en annan typ av iteration skall ni här implementera en for-loop. Detta ska ni skapa för att upprepa något en användare skriver in tio gånger. Det ska alltså inte skrivas via tio stycken ”Console.Write(Input);” utan via en loop som gör detta tio gånger.För att komma till den här funktionen skall ni lägga till ett case för ”3” i er huvudmeny samt text som förklarar detta. Händelseförloppet visas nedan:
+            //1.Användaren anger en godtycklig text
+            Console.WriteLine("Var vänlig ange en text som programmet ska upprepa:");
+            // 2.Programmet sparar texten som en variabel
+            string textToRepeat = Console.ReadLine()!;
+            // 3.Programmet skriver, via en for-loop ut denna text tio gånger på rad, alltså UTAN radbrott. Exempel på output: 1.Input, 2.Input, 3.Input osv.
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write($"{i + 1}: {textToRepeat} ");
             }
         }
     }
