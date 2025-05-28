@@ -17,11 +17,24 @@ namespace FlowControl
                 // 2.Skapa skalet till en Switch-sats som till en början har Två Cases.Ett för ”0” som stänger ner programmet och ett default som berättar att det är felaktig input.
                 Console.WriteLine("\n=== HUVUDMENY ===");
                 Console.WriteLine("0: Avsluta programmet");
+                // 4.Bygg ut menyn med val att exekvera de övriga övningarna.
+                Console.WriteLine("1: Ungdom eller pensionär");
+                Console.WriteLine("2: Upprepa tio gånger");
+                Console.WriteLine("3: Det tredje ordet");
             switch (Console.ReadLine())
             {
                 case "0":
                     Console.WriteLine("Programmet avslutas.");
                     isRunning = false;
+                    break;
+                case "1":
+                    Console.WriteLine("Ungdom eller pensionär.");
+                    break;
+                case "2":
+                    Console.WriteLine("Upprepa tio gånger.");
+                    break;
+                case "3":
+                    Console.WriteLine("Det tredje ordet.");
                     break;
                 default:
                     Console.WriteLine("Felaktig input, försök igen.");
@@ -29,7 +42,6 @@ namespace FlowControl
             }
                 
             }
-            // 4.Bygg ut menyn med val att exekvera de övriga övningarna.
         }
     }
 }
