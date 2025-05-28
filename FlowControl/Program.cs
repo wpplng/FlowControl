@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FlowControl
@@ -26,32 +28,32 @@ namespace FlowControl
                 Console.WriteLine("2: Räkna ut totalpris");
                 Console.WriteLine("3: Upprepa tio gånger");
                 Console.WriteLine("4: Det tredje ordet");
-            switch (Console.ReadLine())
-            {
-                case "0":
-                    Console.WriteLine("Programmet avslutas.");
-                    isRunning = false;
-                    break;
-                case "1":
-                    Console.WriteLine("Biljettpris - Ungdom eller pensionär");
-                    ShowTicketPrice();
-                    break;
-                case "2":
-                    Console.WriteLine("Räkna ut totalpris");
-                    CountTotalPrice();
-                    break;
-                case "3":
-                    Console.WriteLine("Upprepa tio gånger.");
-                    RepeatTenTimes();
-                    break;
-                case "4":
-                    Console.WriteLine("Det tredje ordet.");
-                    break;
-                default:
-                    Console.WriteLine("Felaktig input, försök igen.");
-                    break;
-            }
-                
+                switch (Console.ReadLine())
+                {
+                    case "0":
+                        Console.WriteLine("Programmet avslutas.");
+                        isRunning = false;
+                        break;
+                    case "1":
+                        Console.WriteLine("Biljettpris - Ungdom eller pensionär.");
+                        ShowTicketPrice();
+                        break;
+                    case "2":
+                        Console.WriteLine("Räkna ut totalpris.");
+                        CountTotalPrice();
+                        break;
+                    case "3":
+                        Console.WriteLine("Upprepa tio gånger.");
+                        RepeatTenTimes();
+                        break;
+                    case "4":
+                        Console.WriteLine("Det tredje ordet.");
+                        GetThirdWord();
+                        break;
+                    default:
+                        Console.WriteLine("Felaktig input, försök igen.");
+                        break;
+                }       
             }
         }
 
@@ -152,6 +154,33 @@ namespace FlowControl
             {
                 Console.Write($"{i + 1}: {textToRepeat} ");
             }
+        }
+
+        // Menyval 4: Det tredje ordet
+        private static void GetThirdWord()
+        {
+            /* Ni har tidigare lärt er hur vi omvandlar strängar till integers(tex int.Parse, int.TryParse)men
+             nu ska vi dela upp en sträng. Användaren skall ange en mening, som programmet delar upp
+             i ord via strängens .Split(char) - metod.Ni skall dela strängen på varje mellanslag. För att
+             enkelt lagra detta bör input sparas som en var, då ni kommer få tillbaka mer än en sträng.
+             För att testa det här skall ni skapa case ”4” i er huvudmeny samt skriva en förklaring i
+             texten. Händelseförloppet förklaras nedan:*/
+
+            // 1.Användaren anger en mening med minst 3 ord
+            Console.WriteLine("Var vänlig ange en mening med minst tre ord: ");
+            string input = Console.ReadLine()!;
+            // 2.Programmet delar upp strängen med split - metoden på varje mellanslag
+            var words = input.Split(' ');
+            // 3.Programmet plockar ut den tredje strängen(ordet) ur input
+            // 4.Programmet skriver ut den tredje strängen(ordet)
+            if (words.Length >= 3)
+            {
+                Console.WriteLine($"Det tredje ordet är: {words[2]}");
+            }
+            else
+            {
+                Console.WriteLine("Det finns inget tredje ord.");
+            }            
         }
     }
 }
