@@ -68,8 +68,14 @@ namespace FlowControl
             // 2.Programmet konverterar detta från en sträng till en int
             if (int.TryParse(ageInput, out age))
             {
+                // Programmet kollar om personen är under 5 år eller över 100 år
+                if (age < 5 || age > 100)
+                {
+                    // Om det är sant skall programmet skriva ut: Gratis inträde!
+                    Console.WriteLine("Gratis inträde!");
+                }
                 // 3.Programmet ser om personen är ungdom(under 20 år)
-                if (age < 20)
+                else if (age < 20)
                 {
                     // 4.Om det ovanstående är sant skall programmet skriva ut: Ungdomspris: 80kr
                     Console.WriteLine("Ungdomspris: 80kr");
@@ -107,12 +113,16 @@ namespace FlowControl
 
                 for (int i = 1; i <= count; i++)
                 {
-                    Console.Write($"Ange ålder för person {i}: ");
+                    Console.Write($"Ange ålder för person {i} i siffror: ");
                     string ageInput = Console.ReadLine()!;
 
                     if (int.TryParse(ageInput, out int age))
                     {
-                        if (age < 20)
+                        if (age < 5 || age > 100)
+                        {
+                            totalPrice += 0;
+                        }
+                        else if (age < 20)
                         {
                             totalPrice += 80;
                         }
