@@ -33,15 +33,12 @@ namespace FlowControl
                     isRunning = false;
                     break;
                 case "1":
-                    // Menyval 1: Ungdom eller pensionär
                     Console.WriteLine("Biljettpris - Ungdom eller pensionär");
                     ShowTicketPrice();
                     break;
                 case "2":
                     Console.WriteLine("Räkna ut totalpris");
-                    // Vi vill även få möjlighet att kunna räkna ut priset för ett helt sällskap.Lägg till det alternativet i huvudmenyn(ett case “2”). Det är även ok att ha alternativet i en undermeny. Vi anger då först hur många vi är som ska gå på bio.Frågar sedan efter ålder på var och en och skriver sedan ut en sammanfattning i konsolen som ska innehålla följande:
-                    // ● Antal personer
-                    // ● Samt totalkostnad för hela sällskapet
+                    CountTotalPrice();
                     break;
                 case "3":
                     Console.WriteLine("Upprepa tio gånger.");
@@ -57,6 +54,7 @@ namespace FlowControl
             }
 
         }
+            // Menyval 1: Ungdom eller pensionär
             private static void ShowTicketPrice()
             {
                 // För att exemplifiera if-satser skall ni implementera, på uppdrag av en teoretisk lokal bio, ett program som kollar om en person är pensionär eller ungdom vid angiven ålder. För attkomma till denna funktion skall ett case i huvudmenyn skapas för ”1”, detta skall även framgå i texten som förklarar menyn. För att göra detta skall ni använda er av en nästlad if-sats.Det skall ske enligt följande förlopp:
@@ -89,6 +87,55 @@ namespace FlowControl
                 {
                     Console.WriteLine("Felaktig ålder, var vänlig försök igen.");
                 }
+            }
+
+            // Menyval 2: Räkna ut totalpris
+            private static void CountTotalPrice()
+            {
+            // Vi vill även få möjlighet att kunna räkna ut priset för ett helt sällskap.Lägg till det alternativet i huvudmenyn(ett case “2”). Det är även ok att ha alternativet i en undermeny. Vi anger då först hur många vi är som ska gå på bio.Frågar sedan efter ålder på var och en och skriver sedan ut en sammanfattning i konsolen som ska innehålla följande:
+            // ● Antal personer
+            Console.Write("Hur många är ni i sällskapet? ");
+            string countInput = Console.ReadLine()!;
+
+            if (int.TryParse(countInput, out int count) && count > 0)
+            {
+                // ● Samt totalkostnad för hela sällskapet
+                int totalPrice = 0;
+
+                for (int i = 1; i <= count; i++)
+                {
+                    Console.Write($"Ange ålder för person {i}: ");
+                    string ageInput = Console.ReadLine()!;
+
+                    if (int.TryParse(ageInput, out int age))
+                    {
+                        if (age < 20)
+                        {
+                            totalPrice += 80;
+                        }
+                        else if (age > 64)
+                        {
+                            totalPrice += 90;
+                        }
+                        else
+                        {
+                            totalPrice += 120;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Felaktig ålder, räknas som standardpris (120kr).");
+                        totalPrice += 120;
+                    }
+                }
+
+                Console.WriteLine($"\nAntal personer: {count}");
+                Console.WriteLine($"Totalkostnad: {totalPrice}kr");
+            }
+            else
+            {
+                Console.WriteLine("Felaktigt antal, försök igen!");
+            }
         }
     }
 }
