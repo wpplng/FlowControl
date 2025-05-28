@@ -180,7 +180,7 @@ namespace FlowControl
             Console.WriteLine("Var vänlig ange en mening med minst tre ord: ");
             string input = Console.ReadLine()!;
             // 2.Programmet delar upp strängen med split - metoden på varje mellanslag
-            var words = input.Split(' ');
+            var words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             // 3.Programmet plockar ut den tredje strängen(ordet) ur input
             // 4.Programmet skriver ut den tredje strängen(ordet)
             if (words.Length >= 3)
